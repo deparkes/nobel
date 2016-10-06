@@ -73,6 +73,7 @@ $ pip install nobel
 
 ## TODO
 
+* Update PyPI to include custom_fixers
 * Documentation and full reference
 * More ORM-ish stuff, like filtering using Prize, Laureate or Country objects
   as arguments
