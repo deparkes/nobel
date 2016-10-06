@@ -18,3 +18,9 @@ after_script:
     pip install --quiet --use-mirrors coveralls;
     coveralls;
     fi
+addons:
+  apt:
+    sources:
+      - deadsnakes
+    packages:
+      - python3.5
