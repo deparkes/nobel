@@ -25,6 +25,7 @@ class Laureate(NobelObject):
         if 'prizes' in data:
             obj.prizes = [cls.api.prizes._parse(p, full=False)
                           for p in data['prizes']]
+
         for country_field in ('born_country', 'died_country'):
             if cls._camelize(country_field) in data and \
                cls._camelize(country_field + '_code') in data:
@@ -38,5 +39,7 @@ class Laureate(NobelObject):
     def __unicode__(self):
         if hasattr(self, 'surname'):
             return u'%s %s' % (self.firstname, self.surname)
-        else:
+        elif hasattr(self, 'firstname'):
             return self.firstname
+        else:
+            return str(self.id)
