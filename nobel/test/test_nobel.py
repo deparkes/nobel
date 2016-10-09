@@ -317,6 +317,16 @@ class TestLaureate:
         else:
             assert obj.__str__() == 'Toño'
 
+    @mock.patch('nobel.data.NobelObject.__getattr__')
+    def test_unicode_without_surname_or_forename(self, mocked_getattr):
+        mocked_getattr.side_effect = AttributeError
+        data = {u'id': u'4'}
+        obj = self.api.laureates._parse(data)
+        if sys.version_info < (3, 0):
+            assert obj.__unicode__() == u'4'
+        else:
+            assert obj.__str__() == '4'
+
 
 class TestPrize:
 
