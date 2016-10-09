@@ -360,6 +360,13 @@ class TestPrize:
                 u'motivation': u'because'}
         obj = self.api.prizes._parse(data)
         assert obj.motivation == u'because'
+        
+    @mock.patch('nobel.laureates.Laureate._parse')
+    def test_parse_no_year_in_prize(self, mocked_parse):
+        mocked_parse.return_value = 'laureate object'
+        data = {u'category': u'physics', u'motivation': u'because'}
+        obj = self.api.prizes._parse(data)
+        assert obj.year == 0
 
     def test_unicode(self):
         data = {u'category': u'physics', u'year': u'2006'}
